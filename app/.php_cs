@@ -2,19 +2,20 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('tests/Fixtures')
-    ->exclude('var')
-    ->in(__DIR__)
+    //->exclude('var')
+    ->in(__DIR__.'/src')
+    ->in(__DIR__.'/tests')
+    ->in(__DIR__.'/config')
     ->append([__DIR__.'/php-cs-fixer'])
 ;
 
 $config = PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PHP56Migration' => true,
-        '@PHPUnit60Migration:risky' => true,
-        '@PhpCsFixer' => true,
-        '@PhpCsFixer:risky' => true,
-        'list_syntax' => ['syntax' => 'long'],
+        '@Symfony' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'concat_space' => ['spacing' => 'one'],
+        'phpdoc_var_without_name' => false,
     ])
     ->setFinder($finder)
 ;
