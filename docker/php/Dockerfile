@@ -11,8 +11,11 @@ RUN apt-get update && \
 RUN docker-php-ext-install zip
 RUN docker-php-ext-enable apcu
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 WORKDIR /usr/src/app
 
-COPY apps/app /usr/src/app
+COPY app /usr/src/app
 
-RUN PATH=$PATH:/usr/src/apps/vendor/bin:bin
+RUN composer install
+RUN PATH=$PATH:/usr/src/app/vendor/bin:bin
